@@ -8,10 +8,12 @@ target 'DrawApp' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'Firebase/Firestore', '~> 6.0'
   pod 'RNSketchCanvas', :path => '../node_modules/@terrylinla/react-native-sketch-canvas'
-  pod 'Firebase/Core', '~> 6.3.0'
+  # pod 'Firebase/Core', '~> 6.3.0'
   # Firebase storage dependency
   pod 'Firebase/Storage'
+  pod 'TensorFlow-experimental'
 
   target 'DrawAppTests' do
     inherit! :complete

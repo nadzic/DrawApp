@@ -26,7 +26,7 @@ const App: () => React$Node = () => {
         isReadyRef.current = true;
       }}
      >
-      <Stack.Navigator initialRouteName="Login" headerMode="none">
+      <Stack.Navigator initialRouteName="Diary" headerMode="none">
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Draw" component={DrawScreen} />
         <Stack.Screen name="Diary" component={DiaryScreen} />
