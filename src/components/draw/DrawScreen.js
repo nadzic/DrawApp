@@ -6,6 +6,8 @@ import firebase from 'react-native-firebase';
 
 const { app } = firebase.storage();
 
+export const FireBaseStorage = firebase.storage();
+
 export const DrawScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
@@ -15,8 +17,17 @@ export const DrawScreen = ({ navigation }) => {
     setUsername(username);
   });
 
+  const createStorageReferenceToFile = fileName => {
+    return FireBaseStorage.ref(fileName);
+  };
+
   const onSave = async (success, path) => {
-    console.log("path:", path);
+    console.log("path: ", path);
+    const fileName = /[^/]*$/.exec(path)[0];
+    const storageRef = createStorageReferenceToFile(fileName);
+    await storageRef.putFile(path);
+    const url = await storageRef.getDownloadURL().catch((error) => { throw error });
+    console.log("url for download: ", url);
   };
 
   alert(JSON.stringify(app));
