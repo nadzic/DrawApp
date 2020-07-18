@@ -14,6 +14,7 @@ target 'DrawApp' do
   # Firebase storage dependency
   pod 'Firebase/Storage'
   pod 'TensorFlow-experimental'
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   target 'DrawAppTests' do
     inherit! :complete

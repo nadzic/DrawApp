@@ -5,8 +5,9 @@ import * as tf from '@tensorflow/tfjs';
 import firestore from '@react-native-firebase/firestore';
 import { COLORS } from 'DrawApp/src/constants/colors';
 import Menu from 'DrawApp/src/components/common/Menu';
+//import RNFetchBlob from 'react-native-fetch-blob'
 import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as RootNavigation from 'DrawApp/src/utils/navigation';
+import * as posenet from '@tensorflow-models/posenet';
 
 global.fetch = require('node-fetch');
 
@@ -33,7 +34,7 @@ export const DiaryScreen = ({ navigation }) => {
   const setTfModelReady = async () => {
     try {
       console.log("loading model.. before");
-      await mobilenet.load();
+      //const model = await mobilenet.load();
       console.log("loading model.. after");
       setIsModelReady(true);
     } catch (error) {
@@ -44,7 +45,11 @@ export const DiaryScreen = ({ navigation }) => {
   useEffect(() => {
     /* tensor flow stuff */
     setTfReady();
-    setTfModelReady();
+    //setTfModelReady();
+
+    posenet.load().then(model => {
+      console.log("mdel: ", model)
+    });
 
     /* end of tensor flow */
     firestore().collection('diaries').orderBy('createdAt', 'desc').get()
