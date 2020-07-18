@@ -23,6 +23,10 @@ export const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const signIn = () => {
+    navigation.navigate('Draw');
+  }
+
   return (
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : null} enabled>
       <View style={styles.container}>
@@ -90,7 +94,7 @@ export const LoginScreen = ({ navigation }) => {
             </View>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={(e) => this.userLogin(e)}
+              onPress={signIn}
             >
               <Text style={styles.loginText}>Sign In</Text>
             </TouchableOpacity>
