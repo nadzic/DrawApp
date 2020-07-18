@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -8,7 +8,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { COLORS } from 'ldmaapp/src/constants/colors';
+import { COLORS } from 'DrawApp/src/constants/colors';
+import { getUsername } from 'DrawApp/src/utils/storage';
+import * as RootNavigation from 'DrawApp/src/utils/navigation';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -23,12 +25,10 @@ const Menu = () => {
     });
   });
 
-  userLogout(e) {
-    e.preventDefault();
+  const logout = () => {
     RootNavigation.navigate('Login', {});
-  }
+  };
 
-  render() {
     return (
       <ScrollView scrollsToTop={false} style={styles.container}>
         <View style={styles.userSection}>
@@ -40,10 +40,20 @@ const Menu = () => {
         <View style={styles.content}>
           <View style={styles.lineSeparator} />
           <View style={styles.itemContainer}>
+            <Image style={styles.itemImage}  source={require('DrawApp/assets/png/home.png')} />
+            <Text
+              style={styles.itemText}
+              onPress={() => RootNavigation.navigate('Draw', {})}
+            >
+              Draw
+            </Text>
+          </View>
+          <View style={styles.lineSeparator} />
+          <View style={styles.itemContainer}>
             <Image style={styles.itemImage}  source={require('DrawApp/assets/png/ranking.png')} />
             <Text
               style={styles.itemText}
-              onPress={() => this.navigate('Rankings')}
+              onPress={() => RootNavigation.navigate('Diary', {})}
             >
               Diaries
             </Text>
@@ -52,7 +62,7 @@ const Menu = () => {
           <View style={styles.itemContainer}>
             <Image style={styles.itemImage} source={require('DrawApp/assets/png/logout.png')} />
             <Text
-              onPress={(e) => this.userLogout(e)}
+              onPress={logout}
               style={styles.itemText}
             >
               Logout
@@ -76,7 +86,6 @@ const Menu = () => {
         </View>
       </ScrollView>
     );
-  }
 }
 
 const styles = StyleSheet.create({

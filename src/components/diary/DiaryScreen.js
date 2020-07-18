@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ImageBackground, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
+import SideMenu from 'react-native-side-menu';
 import firestore from '@react-native-firebase/firestore';
 import { COLORS } from 'DrawApp/src/constants/colors';
+import Menu from 'DrawApp/src/components/common/Menu';
 import * as RootNavigation from 'DrawApp/src/utils/navigation';
 
 const BUTTON_HEIGHT = 55;
@@ -11,6 +13,7 @@ export const DiaryScreen = ({ navigation }) => {
 
   const [diaries, setDiaries] = useState([]);
   const [error, setError] = useState();
+  const [isOpenSideMenu, setIsOpenSideMenu] = useState(true);
 
   useEffect(() => {
     firestore().collection('diaries').orderBy('createdAt', 'desc').get()
@@ -34,7 +37,14 @@ export const DiaryScreen = ({ navigation }) => {
     RootNavigation.navigate('Login', {});
   };
 
+  const menu = <Menu />;
+
   return (
+    <SideMenu
+      menu={menu}
+      isOpen={isOpenSideMenu}
+      onChange={isOpenSideMenu => setIsOpenSideMenu(isOpenSideMenu)}
+    >
       <ImageBackground
         style={styles.backgroundImage}
         source={require('DrawApp/assets/png/bg.png')}
@@ -62,6 +72,7 @@ export const DiaryScreen = ({ navigation }) => {
         </TouchableOpacity>
         </ScrollView>
       </ImageBackground>
+      </SideMenu>
   );
 };
 
