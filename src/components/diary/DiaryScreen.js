@@ -61,7 +61,6 @@ export const DiaryScreen = ({ navigation }) => {
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
         </ScrollView>
-
       </ImageBackground>
   );
 };
