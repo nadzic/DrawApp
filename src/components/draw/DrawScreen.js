@@ -1,17 +1,20 @@
-import * as React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
 import { getUsername } from 'DrawApp/src/utils/storage';
 
 export const DrawScreen = ({ navigation }) => {
 
-
-
-
+  const [username, setUsername] = useState('');
   const usernamePromise = getUsername();
   usernamePromise.then((username) => {
     console.log("username: ", username);
+    setUsername(username);
   });
+
+  const onSave = async (success, path) => {
+    console.log("path:", path);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -50,6 +53,7 @@ export const DrawScreen = ({ navigation }) => {
               imageType: 'png',
             }
           }}
+          onSketchSaved={onSave}
         />
       </View>
     </SafeAreaView>
