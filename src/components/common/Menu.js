@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { COLORS } from 'DrawApp/src/constants/colors';
-import { getUsername } from 'DrawApp/src/utils/storage';
+import { getUsername, clearStorage } from 'DrawApp/src/utils/storage';
 import * as RootNavigation from 'DrawApp/src/utils/navigation';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -26,6 +26,7 @@ const Menu = () => {
   });
 
   const logout = () => {
+    clearStorage();
     RootNavigation.navigate('Login', {});
   };
 

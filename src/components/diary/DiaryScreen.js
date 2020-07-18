@@ -33,10 +33,6 @@ export const DiaryScreen = ({ navigation }) => {
       });
   }, []);
 
-  const logout = () => {
-    RootNavigation.navigate('Login', {});
-  };
-
   const menu = <Menu />;
 
   return (
@@ -73,12 +69,6 @@ export const DiaryScreen = ({ navigation }) => {
             </View>
 
           ))}
-        <TouchableOpacity
-          style={styles.logoutButton}
-          onPress={logout}
-        >
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
         </ScrollView>
       </ImageBackground>
       </SideMenu>

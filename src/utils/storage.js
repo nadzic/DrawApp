@@ -20,3 +20,16 @@ export const getUsername = async () => {
     console.log("error getting value from storage", e);
   }
 };
+
+
+export const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+  } catch(e) {
+    // clear error
+  }
+
+  console.log('Done.')
+};
+
+
