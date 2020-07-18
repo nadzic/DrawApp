@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
 import { getUsername } from 'DrawApp/src/utils/storage';
-import firebase from 'react-native-firebase';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
-const { app } = firebase.storage();
-
-export const FireBaseStorage = firebase.storage();
+export const FireBaseStorage = storage();
 
 export const DrawScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const usernamePromise = getUsername();
-  usernamePromise.then((username) => {
-    console.log("username: ", username);
-    setUsername(username);
+
+  useEffect(() => {
+    usernamePromise.then((username) => {
+      console.log("username: ", username);
+      setUsername(username);
+    });
   });
+
+  const ref = firestore().collection('diaries');
 
   const createStorageReferenceToFile = fileName => {
     return FireBaseStorage.ref(fileName);
   };
 
   const onSave = async (success, path) => {
-    console.log("path: ", path);
     const fileName = /[^/]*$/.exec(path)[0];
     const storageRef = createStorageReferenceToFile(fileName);
     await storageRef.putFile(path);
     const url = await storageRef.getDownloadURL().catch((error) => { throw error });
-    console.log("url for download: ", url);
+    await ref.add({
+      username,
+      imageUrl: url,
+    });
+    navigation.navigate('Diary');
   };
-
-  alert(JSON.stringify(app));
 
   return (
     <SafeAreaView style={styles.container}>
