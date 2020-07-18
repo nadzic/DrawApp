@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Alert } from 'react-native';
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
 import { getUsername } from 'DrawApp/src/utils/storage';
+import firebase from 'react-native-firebase';
+
+const { app } = firebase.storage();
 
 export const DrawScreen = ({ navigation }) => {
 
@@ -15,6 +18,8 @@ export const DrawScreen = ({ navigation }) => {
   const onSave = async (success, path) => {
     console.log("path:", path);
   };
+
+  alert(JSON.stringify(app));
 
   return (
     <SafeAreaView style={styles.container}>
