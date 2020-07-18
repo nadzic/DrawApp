@@ -22,10 +22,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export const LoginScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
   const signIn = () => {
     storeUsername(username);
+    setUsername('');
     navigation.navigate('Draw');
   };
 
@@ -68,25 +68,6 @@ export const LoginScreen = ({ navigation }) => {
                   style={styles.lineImage}
                 />
               </View>
-              <View style={styles.passwordSection}>
-                <Image
-                  source={require('DrawApp/assets/png/password.png')}
-                  style={styles.passwordImage}
-                />
-                <Text style={{ position: 'absolute', color: COLORS.WHITE, fontSize: 10, lineHeight: 10, letterSpacing: 1, left: 60, top: 0 }}>
-                  PASSWORD
-                </Text>
-                <TextInput
-                  style={styles.passwordInput}
-                  secureTextEntry
-                  underlineColorAndroid="transparent"
-                  placeholder="••••••••"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  placeholderTextColor={COLORS.LIGHTGREY}
-                  onChangeText={(text) => setPassword(text)}
-                />
-              </View>
               <View>
               <Image
                 source={require('DrawApp/assets/png/line.png')}
@@ -97,8 +78,9 @@ export const LoginScreen = ({ navigation }) => {
             <TouchableOpacity
               style={styles.loginButton}
               onPress={signIn}
+              disabled={!username ? true : false}
             >
-              <Text style={styles.loginText}>Sign In</Text>
+              <Text style={[styles.loginText, { color: !username ? COLORS.DARKGREY : COLORS.WHITE }]}>Sign In</Text>
             </TouchableOpacity>
             <View style={styles.createForgetSection} />
           </View>
