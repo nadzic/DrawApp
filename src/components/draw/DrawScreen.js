@@ -30,9 +30,11 @@ export const DrawScreen = ({ navigation }) => {
     const storageRef = createStorageReferenceToFile(fileName);
     await storageRef.putFile(path);
     const url = await storageRef.getDownloadURL().catch((error) => { throw error });
+    const timestamp = firestore.FieldValue.serverTimestamp();
     await ref.add({
       username,
       imageUrl: url,
+      createdAt: timestamp,
     });
     navigation.navigate('Diary');
   };

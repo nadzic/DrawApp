@@ -8,7 +8,7 @@ export const DiaryScreen = ({ navigation }) => {
   const [error, setError] = useState();
 
   useEffect(() => {
-    firestore().collection('diaries').get()
+    firestore().collection('diaries').orderBy('createdAt', 'desc').get()
       .then(response => {
         const fetchedDiaries = [];
         response.docs.forEach(document => {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 300,
-    height: 300,
+    height: 500
   },
   backgroundImage: {
     flex: 1,
