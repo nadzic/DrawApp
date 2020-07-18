@@ -53,7 +53,7 @@ export const LoginScreen = ({ navigation }) => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
-                  onChangeText={(text) => this.setState({ username: text })}
+                  onChangeText={(text) => setUsername(text)}
                 />
               </View>
               <View>
@@ -78,7 +78,7 @@ export const LoginScreen = ({ navigation }) => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholderTextColor={COLORS.LIGHTGREY}
-                  onChangeText={(text) => this.setState({ password: text })}
+                  onChangeText={(text) => setPassword(text)}
                 />
               </View>
               <View>
