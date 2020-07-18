@@ -1,8 +1,18 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
+import { getUsername } from 'DrawApp/src/utils/storage';
 
 export const DrawScreen = ({ navigation }) => {
+
+
+
+
+  const usernamePromise = getUsername();
+  usernamePromise.then((username) => {
+    console.log("username: ", username);
+  });
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1, flexDirection: 'row' }}>

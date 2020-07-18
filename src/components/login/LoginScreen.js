@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   Dimensions,
 } from 'react-native';
+import { storeUsername } from 'DrawApp/src/utils/storage';
 import { COLORS } from 'DrawApp/src/constants/colors';
 
 const BUTTON_HEIGHT = 55;
@@ -24,8 +25,9 @@ export const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const signIn = () => {
+    storeUsername(username);
     navigation.navigate('Draw');
-  }
+  };
 
   return (
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : null} enabled>
