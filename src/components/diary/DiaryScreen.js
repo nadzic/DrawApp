@@ -13,7 +13,7 @@ export const DiaryScreen = ({ navigation }) => {
 
   const [diaries, setDiaries] = useState([]);
   const [error, setError] = useState();
-  const [isOpenSideMenu, setIsOpenSideMenu] = useState(true);
+  const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
 
   useEffect(() => {
     firestore().collection('diaries').orderBy('createdAt', 'desc').get()
@@ -49,6 +49,15 @@ export const DiaryScreen = ({ navigation }) => {
         style={styles.backgroundImage}
         source={require('DrawApp/assets/png/bg.png')}
       >
+      <TouchableOpacity
+        onPress={() => setIsOpenSideMenu(!isOpenSideMenu)}
+        style={styles.menuButton}
+      >
+        <Image
+          source={require('DrawApp/assets/png/menu.png')}
+          style={styles.menu}
+        />
+      </TouchableOpacity>
         <ScrollView style={{width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
           <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Diaries</Text>
           {error && <Text>Oops there is an error</Text>}
@@ -107,5 +116,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14,
     letterSpacing: 0,
+  },
+  menuButton: {
+    position: 'absolute',
+    top: 8,
+    left: 15,
+    padding: 10,
+    zIndex: 1000,
+  },
+  menu: {
+    width: 30,
+    height: 30,
   },
 });
