@@ -58,6 +58,7 @@ export const LoginScreen = ({ navigation }) => {
                   placeholder="Enter username"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  value={username}
                   placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
                   onChangeText={(text) => setUsername(text)}
                 />
