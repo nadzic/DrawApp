@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
 
 export const DrawScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <RNSketchCanvas
           containerStyle={{ backgroundColor: 'transparent', flex: 1 }}
@@ -42,23 +42,42 @@ export const DrawScreen = ({ navigation }) => {
           }}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F5FCFF',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
   strokeColorButton: {
-    marginHorizontal: 2.5, marginVertical: 8, width: 30, height: 30, borderRadius: 15,
+    marginHorizontal: 2.5,
+    marginVertical: 8,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
   },
   strokeWidthButton: {
-    marginHorizontal: 2.5, marginVertical: 8, width: 30, height: 30, borderRadius: 15,
-    justifyContent: 'center', alignItems: 'center', backgroundColor: '#39579A'
+    marginHorizontal: 2.5,
+    marginVertical: 8,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#39579A'
   },
   functionButton: {
-    marginHorizontal: 2.5, marginVertical: 8, height: 30, width: 60,
-    backgroundColor: '#39579A', justifyContent: 'center', alignItems: 'center', borderRadius: 5,
-  }
+    marginHorizontal: 2.5,
+    marginVertical: 8,
+    height: 30,
+    width: 60,
+    backgroundColor: '#39579A',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
 });
