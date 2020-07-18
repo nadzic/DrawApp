@@ -37,7 +37,7 @@ export const DrawScreen = ({ navigation }) => {
               folder: 'RNSketchCanvas',
               filename: String(Math.ceil(Math.random() * 100000000)),
               transparent: false,
-              imageType: 'png'
+              imageType: 'png',
             }
           }}
         />
