@@ -32,6 +32,8 @@ import { DiaryScreen } from 'DrawApp/src/components/diary/DiaryScreen';
 const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
+  console.disableYellowBox = true;
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login" headerMode="none">
