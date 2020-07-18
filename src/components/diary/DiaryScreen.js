@@ -30,21 +30,21 @@ export const DiaryScreen = ({ navigation }) => {
         style={styles.backgroundImage}
         source={require('DrawApp/assets/png/bg.png')}
       >
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-      <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Diaries</Text>
-      {error && <Text>Oops there is an error</Text>}
-      {diaries && diaries.map(diary => (
-        <View style={{ marginTop: 20 }}>
-          <Text style={{ color: 'white' }}>{diary.username}</Text>
-          <Image
-          style={styles.logo}
-          source={{
-            uri: diary.imageUrl
-          }}
-        />
-        </View>
+      <ScrollView style={{width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
+        <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Diaries</Text>
+        {error && <Text>Oops there is an error</Text>}
+        {diaries && diaries.map(diary => (
+          <View style={{ marginTop: 20 }}>
+            <Text style={{ color: 'white' }}>{diary.username}</Text>
+            <Image
+            style={styles.logo}
+            source={{
+              uri: diary.imageUrl
+            }}
+          />
+          </View>
 
-      ))}
+        ))}
       </ScrollView>
       </ImageBackground>
   );
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
   },
 });
