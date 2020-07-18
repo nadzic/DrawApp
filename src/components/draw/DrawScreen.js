@@ -5,6 +5,7 @@ import { getUsername } from 'DrawApp/src/utils/storage';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 
+
 export const FireBaseStorage = storage();
 
 export const DrawScreen = ({ navigation }) => {
@@ -14,7 +15,6 @@ export const DrawScreen = ({ navigation }) => {
 
   useEffect(() => {
     usernamePromise.then((username) => {
-      console.log("username: ", username);
       setUsername(username);
     });
   });
