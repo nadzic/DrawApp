@@ -3,11 +3,14 @@ import { View, Text, TouchableOpacity, ImageBackground, StyleSheet, ScrollView, 
 import SideMenu from 'react-native-side-menu';
 import * as tf from '@tensorflow/tfjs';
 import firestore from '@react-native-firebase/firestore';
+//import { fetch } from '@tensorflow/tfjs-react-native'
+import { fetch } from '@tensorflow/tfjs-react-native'
+import * as mobilenet from '@tensorflow-models/mobilenet';
+import * as RNFS from 'react-native-fs';
+import * as jpeg from 'jpeg-js';
 import { COLORS } from 'DrawApp/src/constants/colors';
 import Menu from 'DrawApp/src/components/common/Menu';
-//import RNFetchBlob from 'react-native-fetch-blob'
-import * as mobilenet from '@tensorflow-models/mobilenet';
-import * as posenet from '@tensorflow-models/posenet';
+import tesla from './tesla.jpg';
 
 global.fetch = require('node-fetch');
 
@@ -21,6 +24,52 @@ export const DiaryScreen = ({ navigation }) => {
   const [isOpenSideMenu, setIsOpenSideMenu] = useState(false);
   const [isTfReady, setIsTfReady] = useState(false);
   const [isModelReady, setIsModelReady] = useState(false);
+  const [model, setModel] = useState(null);
+
+
+  const imageToTensor = (rawImageData) => {
+    console.log("rawImageData: ", rawImageData);
+    const TO_UINT8ARRAY = true
+    const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY)
+    // Drop the alpha channel info for mobilenet
+    const buffer = new Uint8Array(width * height * 3)
+    let offset = 0 // offset into original data
+    for (let i = 0; i < buffer.length; i += 3) {
+      buffer[i] = data[offset]
+      buffer[i + 1] = data[offset + 1]
+      buffer[i + 2] = data[offset + 2]
+
+      offset += 4
+    }
+
+    return tf.tensor3d(buffer, [height, width, 3])
+  }
+
+  const classifyImage = async () => {
+    try {
+      const imageAssetPath = Image.resolveAssetSource(tesla);
+      console.log("imageAssetPath: ", imageAssetPath);
+      //const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
+      console.log("we aee here");
+      //console.log("response: ", response);
+      //const imageTensor = imageToTensor(response.url);
+      //const predictions = model.classify(imageTensor);
+      //console.log(predictions);
+
+      RNFS.readFile("https://firebasestorage.googleapis.com/v0/b/drawme-6c849.appspot.com/o/46680336.jpg?alt=media&token=57ffdd6d-6a2b-48ab-9586-56d1ff4b9896", "base64").then(data => {
+        // binary data
+        console.log("getr data in base64")
+        console.log(data);
+        /*const imageTensor = imageToTensor(data);
+        const predictions = model.classify(imageTensor);*/
+        //this.setState({ predictions })
+        //console.log(predictions);
+      });
+
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   const setTfReady = async () => {
     try {
@@ -34,7 +83,8 @@ export const DiaryScreen = ({ navigation }) => {
   const setTfModelReady = async () => {
     try {
       console.log("loading model.. before");
-      //const model = await mobilenet.load();
+      const model = await mobilenet.load();
+      setModel(model);
       console.log("loading model.. after");
       setIsModelReady(true);
     } catch (error) {
@@ -45,12 +95,7 @@ export const DiaryScreen = ({ navigation }) => {
   useEffect(() => {
     /* tensor flow stuff */
     setTfReady();
-    //setTfModelReady();
-
-    posenet.load().then(model => {
-      console.log("mdel: ", model)
-    });
-
+    setTfModelReady();
     /* end of tensor flow */
     firestore().collection('diaries').orderBy('createdAt', 'desc').get()
       .then(response => {
@@ -69,9 +114,11 @@ export const DiaryScreen = ({ navigation }) => {
       });
   }, []);
 
-  console.log("isTfReady: ", isTfReady)
-
   const menu = <Menu />;
+
+  if (isModelReady && isTfReady) {
+    classifyImage()
+  }
 
   return (
     <SideMenu
