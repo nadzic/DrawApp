@@ -27,6 +27,7 @@ export const DiaryScreen = ({ navigation }) => {
   const [isTfReady, setIsTfReady] = useState(false);
   const [isModelReady, setIsModelReady] = useState(false);
   const [model, setModel] = useState(null);
+  const [recognizing, setRecognizing] = useState(true);
   const [username, setUsername] = useState('');
   const usernamePromise = getUsername();
 
@@ -35,6 +36,13 @@ export const DiaryScreen = ({ navigation }) => {
       setUsername(username);
     });
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRecognizing(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleEmail = () => {
     const to = ['theraphy@drawout.art'] // string or array of email addresses
@@ -179,8 +187,8 @@ export const DiaryScreen = ({ navigation }) => {
                   uri: diary.imageUrl
                 }}
               />
-
-              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Feeling: ${diary.feeling}`.toUpperCase()}</Text>
+              {recognizing && <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Feeling: recognizing...`.toUpperCase()}</Text>}
+              {!recognizing && <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Feeling: ${diary.feeling}`.toUpperCase()}</Text>}
               <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 80 : 30, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Author: ${diary.username}`.toUpperCase()}</Text>
               <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 60 : 10, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Created at:'.toUpperCase()} {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
 
