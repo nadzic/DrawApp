@@ -33,7 +33,7 @@ const Menu = () => {
     return (
       <ScrollView scrollsToTop={false} style={styles.container}>
         <View style={styles.userSection}>
-          <Image style={styles.userImage} source={require('DrawApp/assets/png/userpic.png')} />
+          <Image style={styles.userImage} source={require('DrawApp/assets/png/avatar3.png')} />
           <View>
             <Text style={styles.nameText}>{username}</Text>
           </View>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   },
   userSection: {
     marginTop: 30,
+    backgroundColor: 'transparent',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -117,9 +118,11 @@ const styles = StyleSheet.create({
     width: 50,
     borderRadius: 50,
     marginRight: 25,
+    backgroundColor: 'transparent',
   },
   nameText: {
-    color: COLORS.GREY2,
+    color: COLORS.BLACK,
+    fontWeight: '700',
     fontSize: 18,
   },
   content: {
