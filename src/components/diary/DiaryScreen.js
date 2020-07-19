@@ -149,14 +149,15 @@ export const DiaryScreen = ({ navigation }) => {
         */}
           {error && <Text>Oops there is an error</Text>}
           {diaries && diaries.map(diary => (
-            <View style={{ marginTop: 30 }}>
-              <Text style={{ color: 'white', textAlign: 'center', color: '#F18A7B', fontWeight: '600' }}>{diary.username} has drawn image on {diary.createdAt.toDate().toDateString()}</Text>
+            <View style={{ marginTop: 30, position: 'relative' }}>
               <Image
                 style={styles.logo}
                 source={{
                   uri: diary.imageUrl
                 }}
-            />
+              />
+              <Text style={{ position: 'absolute', left: 10, bottom: 40, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Author: Nik'.toUpperCase()}</Text>
+              <Text style={{ position: 'absolute', left: 10, bottom: 20, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>Created at: {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
             </View>
 
           ))}
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderRadius: 20,
     borderColor: '#F18A7B',
-    borderWidth: 5,
+    //borderWidth: 5,
     width: 300,
     height: 500,
   },

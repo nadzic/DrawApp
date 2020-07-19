@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
   logoWrapper: {
     marginTop: SCREEN_HEIGHT * .17,
     zIndex: 100,
-    width: 350,
-    height: 150,
+    width: 250,
+    height: 80,
   },
   logoText: {
     resizeMode: 'contain',
-    width: 350,
-    height: 150,
+    width: 250,
+    height: 80,
   },
   createForgetSection: {
     justifyContent: 'center',
