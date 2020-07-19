@@ -22,6 +22,8 @@ export const LoginScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
 
+  console.log("username: ", username);
+
   const signIn = () => {
     storeUsername(username);
     setUsername('');

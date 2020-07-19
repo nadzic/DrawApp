@@ -156,7 +156,7 @@ export const DiaryScreen = ({ navigation }) => {
                   uri: diary.imageUrl
                 }}
               />
-              <Text style={{ position: 'absolute', left: 10, bottom: 40, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Author: Nik'.toUpperCase()}</Text>
+              <Text style={{ position: 'absolute', left: 10, bottom: 40, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Author: ${diary.username}`.toUpperCase()}</Text>
               <Text style={{ position: 'absolute', left: 10, bottom: 20, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Created at:'.toUpperCase()} {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
             </View>
 
