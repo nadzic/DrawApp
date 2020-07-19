@@ -139,7 +139,11 @@ export const DiaryScreen = ({ navigation }) => {
         />
       </TouchableOpacity>
         <ScrollView style={{width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-          <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Feelings</Text>
+          <Image
+            source={require('DrawApp/assets/png/feelings.png')}
+            style={{  width: 350, height: 120, marginTop: 70 }}
+          />
+
           {/*
           <Text>TFJS ready? {isTfReady ? <Text>Yes</Text> : ''}</Text>
           <Text>
