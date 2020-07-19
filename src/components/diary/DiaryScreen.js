@@ -36,15 +36,13 @@ export const DiaryScreen = ({ navigation }) => {
     });
   });
 
-
-
   const handleEmail = () => {
     const to = ['theraphy@drawout.art'] // string or array of email addresses
     email(to, {
         // Optional additional arguments
-        cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
-        bcc: 'mee@mee.com', // string or array of email addresses
-        subject: 'Show how to use',
+        //cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
+        //bcc: 'mee@mee.com', // string or array of email addresses
+        subject: 'DrawOut Feeling',
         body: 'Some body right here'
     }).catch(console.error)
   }
@@ -142,6 +140,7 @@ export const DiaryScreen = ({ navigation }) => {
     classifyImage()
   }*/
 
+
   return (
     <SideMenu
       menu={menu}
@@ -181,7 +180,7 @@ export const DiaryScreen = ({ navigation }) => {
                 }}
               />
 
-              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Feeling: happy'.toUpperCase()}</Text>
+              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Feeling: ${diary.feeling}`.toUpperCase()}</Text>
               <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 80 : 30, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Author: ${diary.username}`.toUpperCase()}</Text>
               <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 60 : 10, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Created at:'.toUpperCase()} {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
 
@@ -190,7 +189,7 @@ export const DiaryScreen = ({ navigation }) => {
                 style={{ backgroundColor: '#F18A7B', padding: 10, borderRadius: 20, justifyContent: 'center', marginTop: 10 }}
                 onPress={handleEmail}
                 >
-              <Text style={{ color: 'white', textAlign: 'center', fontWeight: '600' }}>CONTACT FOR HELP</Text>
+              <Text style={{ color: 'white', textAlign: 'center', fontWeight: '600' }}>CONTACT OUR THERAPIST</Text>
             </TouchableOpacity>
             }
             </View>

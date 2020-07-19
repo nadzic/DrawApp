@@ -19,6 +19,15 @@ export const DrawScreen = ({ navigation }) => {
     });
   });
 
+  let feeling = 'neutral';
+  if (username === 'Alex') {
+    feeling = 'sad';
+  } else if (username === 'Nik') {
+    feeling = 'happy';
+  } else if (username === 'Avery') {
+    feeling = 'loved';
+  }
+
   const ref = firestore().collection('diaries');
 
   const createStorageReferenceToFile = fileName => {
@@ -35,6 +44,7 @@ export const DrawScreen = ({ navigation }) => {
       username,
       imageUrl: url,
       createdAt: timestamp,
+      feeling,
     });
     navigation.navigate('Diary');
   };
