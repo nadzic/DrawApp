@@ -180,7 +180,6 @@ export const DiaryScreen = ({ navigation }) => {
             source={require('DrawApp/assets/png/feelings.png')}
             style={{  width: 350, height: 120, marginTop: 70 }}
           />
-
           {/*
           <Text>TFJS ready? {isTfReady ? <Text>Yes</Text> : ''}</Text>
           <Text>
