@@ -44,14 +44,24 @@ export const DiaryScreen = ({ navigation }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleEmail = () => {
-    const to = ['theraphy@drawout.art'] // string or array of email addresses
+  const handleEmail = (feeling) => {
+    const to = ['therapy@drawout.art'] // string or array of email addresses
+    const body = `Dear Therapist,
+
+    My predicted feeling with DrawOut app was ${feeling}, so I am contacting you to help me with mental health.
+
+    Are you available in next days that we schedule Zoom call and talk more about my feelings?
+
+    Thank you!
+
+    Kind regards,
+    ${username}`;
     email(to, {
         // Optional additional arguments
         //cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
         //bcc: 'mee@mee.com', // string or array of email addresses
-        subject: 'DrawOut Feeling',
-        body: 'Some body right here'
+        subject: 'DrawOut App - Therapist help',
+        body
     }).catch(console.error)
   }
 
@@ -195,7 +205,7 @@ export const DiaryScreen = ({ navigation }) => {
               {diary.username === username &&
               <TouchableOpacity
                 style={{ backgroundColor: '#F18A7B', padding: 10, borderRadius: 20, justifyContent: 'center', marginTop: 10 }}
-                onPress={handleEmail}
+                onPress={() => handleEmail(diary.feeling)}
                 >
               <Text style={{ color: 'white', textAlign: 'center', fontWeight: '600' }}>CONTACT OUR THERAPIST</Text>
             </TouchableOpacity>
