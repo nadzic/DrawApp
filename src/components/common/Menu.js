@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
   userSection: {
+    marginTop: 30,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',

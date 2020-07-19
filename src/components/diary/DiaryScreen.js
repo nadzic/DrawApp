@@ -116,6 +116,8 @@ export const DiaryScreen = ({ navigation }) => {
 
   const menu = <Menu />;
 
+
+  console.log("diaries: ", diaries);
   /*if (isModelReady && isTfReady) {
     classifyImage()
   }*/
@@ -137,21 +139,23 @@ export const DiaryScreen = ({ navigation }) => {
         />
       </TouchableOpacity>
         <ScrollView style={{width: '100%' }} contentContainerStyle={{ alignItems: 'center' }}>
-          <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Diaries</Text>
+          <Text style={{ color: 'white', marginTop: 70, fontSize: 50, textAlign: 'center' }}>Feelings</Text>
+          {/*
           <Text>TFJS ready? {isTfReady ? <Text>Yes</Text> : ''}</Text>
           <Text>
           Model ready?{' '}
           {isModelReady ? <Text>Yes</Text> : <Text>Loading Model...</Text>}
         </Text>
+        */}
           {error && <Text>Oops there is an error</Text>}
           {diaries && diaries.map(diary => (
-            <View style={{ marginTop: 20 }}>
-              <Text style={{ color: 'white' }}>{diary.username}</Text>
+            <View style={{ marginTop: 30 }}>
+              <Text style={{ color: 'white', textAlign: 'center', color: '#F18A7B', fontWeight: '600' }}>{diary.username} has drawn image on {diary.createdAt.toDate().toDateString()}</Text>
               <Image
-              style={styles.logo}
-              source={{
-                uri: diary.imageUrl
-              }}
+                style={styles.logo}
+                source={{
+                  uri: diary.imageUrl
+                }}
             />
             </View>
 
@@ -175,6 +179,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logo: {
+    marginTop: 5,
+    borderRadius: 20,
+    borderColor: '#F18A7B',
+    borderWidth: 5,
     width: 300,
     height: 500,
   },
