@@ -8,7 +8,9 @@ import firestore from '@react-native-firebase/firestore';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as RNFS from 'react-native-fs';
 import * as jpeg from 'jpeg-js';
+import email from 'react-native-email';
 import { COLORS } from 'DrawApp/src/constants/colors';
+import { getUsername } from 'DrawApp/src/utils/storage';
 import Menu from 'DrawApp/src/components/common/Menu';
 import tesla from './tesla.jpg';
 
@@ -25,7 +27,27 @@ export const DiaryScreen = ({ navigation }) => {
   const [isTfReady, setIsTfReady] = useState(false);
   const [isModelReady, setIsModelReady] = useState(false);
   const [model, setModel] = useState(null);
+  const [username, setUsername] = useState('');
+  const usernamePromise = getUsername();
 
+  useEffect(() => {
+    usernamePromise.then((username) => {
+      setUsername(username);
+    });
+  });
+
+
+
+  const handleEmail = () => {
+    const to = ['theraphy@drawout.art'] // string or array of email addresses
+    email(to, {
+        // Optional additional arguments
+        cc: ['bazzy@moo.com', 'doooo@daaa.com'], // string or array of email addresses
+        bcc: 'mee@mee.com', // string or array of email addresses
+        subject: 'Show how to use',
+        body: 'Some body right here'
+    }).catch(console.error)
+  }
 
   const imageToTensor = (rawImageData) => {
     console.log("rawImageData: ", rawImageData);
@@ -158,9 +180,19 @@ export const DiaryScreen = ({ navigation }) => {
                   uri: diary.imageUrl
                 }}
               />
-              <Text style={{ position: 'absolute', left: 10, bottom: 60, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Author: ${diary.username}`.toUpperCase()}</Text>
-              <Text style={{ position: 'absolute', left: 10, bottom: 40, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Created at:'.toUpperCase()} {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
-              <Text style={{ position: 'absolute', left: 10, bottom: 20, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Feeling:'.toUpperCase()}</Text>
+
+              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 100 : 50, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Feeling: happy'.toUpperCase()}</Text>
+              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 80 : 30, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{`Author: ${diary.username}`.toUpperCase()}</Text>
+              <Text style={{ position: 'absolute', left: 10, bottom: diary.username === username ? 60 : 10, backgroundColor: 'black', color: 'white', fontWeight: '600' }}>{'Created at:'.toUpperCase()} {diary.createdAt.toDate().toDateString().toUpperCase()}</Text>
+
+              {diary.username === username &&
+              <TouchableOpacity
+                style={{ backgroundColor: '#F18A7B', padding: 10, borderRadius: 20, justifyContent: 'center', marginTop: 10 }}
+                onPress={handleEmail}
+                >
+              <Text style={{ color: 'white', textAlign: 'center', fontWeight: '600' }}>CONTACT FOR HELP</Text>
+            </TouchableOpacity>
+            }
             </View>
 
           ))}
