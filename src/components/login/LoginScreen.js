@@ -32,17 +32,19 @@ export const LoginScreen = ({ navigation }) => {
   return (
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : null} enabled>
       <View style={styles.container}>
-        <ImageBackground
-          style={styles.backgroundImage}
-          source={require('DrawApp/assets/png/bg.png')}
-        >
+            <View style={styles.logoWrapper}>
+            <Image
+              style={styles.logoText}
+              source={require('DrawApp/assets/png/drawout-text.png')}
+            />
+          </View>
           <View style={styles.markWrapper}>
             <Image
               style={styles.mark}
-              source={require('DrawApp/assets/png/mark.png')}
+              source={require('DrawApp/assets/png/drawout-logo.png')}
             />
           </View>
-          <View style={{ alignItems: 'center', marginTop: 0.153 * SCREEN_HEIGHT }}>
+          <View style={{ alignItems: 'center', marginTop: 0.1 * SCREEN_HEIGHT }}>
             <View style={{ position: 'relative' }}>
               <View style={styles.usernameSection}>
                 <Image
@@ -81,11 +83,10 @@ export const LoginScreen = ({ navigation }) => {
               onPress={signIn}
               disabled={!username ? true : false}
             >
-              <Text style={[styles.loginText, { color: !username ? COLORS.DARKGREY : COLORS.WHITE }]}>Sign In</Text>
+              <Text style={[styles.loginText]}>Sign In</Text>
             </TouchableOpacity>
             <View style={styles.createForgetSection} />
           </View>
-        </ImageBackground>
       </View>
     </KeyboardAvoidingView>
   );
@@ -94,21 +95,33 @@ export const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: '#F18A7B',
     height: '100%',
+    alignItems: 'center',
   },
   backgroundImage: {
     flex: 1,
     alignItems: 'center',
   },
   markWrapper: {
-    marginTop: SCREEN_HEIGHT * .17,
+    marginTop: 0,
     zIndex: 100,
     width: 150,
     height: 150,
   },
   mark: {
     width: 150,
+    height: 150,
+  },
+  logoWrapper: {
+    marginTop: SCREEN_HEIGHT * .17,
+    zIndex: 100,
+    width: 350,
+    height: 150,
+  },
+  logoText: {
+    resizeMode: 'contain',
+    width: 350,
     height: 150,
   },
   createForgetSection: {
@@ -159,7 +172,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14,
     letterSpacing: 0,
-    color: 'rgba(255, 255, 255, 0.5)',
+    color: COLORS.WHITE,
   },
   passwordSection: {
     flexDirection: 'row',

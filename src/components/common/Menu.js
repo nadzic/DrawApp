@@ -75,13 +75,13 @@ const Menu = () => {
             <TouchableOpacity
               //onPress={() => this.onSupportClick('nik@drawout.com')}
             >
-              <Text style={styles.emailText}>nik@drawout.com</Text>
+              <Text style={styles.emailText}>support@drawout.art</Text>
             </TouchableOpacity>
             <Text style={[styles.headlineText, { marginTop: 20 }]}>Tech support</Text>
             <TouchableOpacity
               //onPress={() => this.onSupportClick('nik@drawout.com')}
             >
-              <Text style={styles.emailText}>nik@drawout.com</Text>
+              <Text style={styles.emailText}>tech@drawout.art</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: WINDOW_WIDTH + 1,
     height: WINDOW_HEIGHT,
-    backgroundColor: COLORS.LIGHTGREY4,
+    backgroundColor: '#F4C51B',
     borderRightWidth: 1,
     borderRightColor: COLORS.RED,
     borderStyle: 'solid',
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   lineSeparator: {
-    borderBottomColor: COLORS.GREY,
+    borderBottomColor: COLORS.BLACK,
     borderBottomWidth: 0.5,
     marginBottom: 31.5,
   },
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   emailText: {
-    color: COLORS.LIGHTGREY,
+    color: COLORS.BLACK,
     fontSize: 16,
     fontWeight: 'bold',
   },

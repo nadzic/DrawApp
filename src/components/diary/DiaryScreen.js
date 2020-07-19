@@ -4,7 +4,7 @@ import SideMenu from 'react-native-side-menu';
 import * as tf from '@tensorflow/tfjs';
 import firestore from '@react-native-firebase/firestore';
 //import { fetch } from '@tensorflow/tfjs-react-native'
-import { fetch } from '@tensorflow/tfjs-react-native'
+//import { fetch } from '@tensorflow/tfjs-react-native'
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as RNFS from 'react-native-fs';
 import * as jpeg from 'jpeg-js';
@@ -116,9 +116,9 @@ export const DiaryScreen = ({ navigation }) => {
 
   const menu = <Menu />;
 
-  if (isModelReady && isTfReady) {
+  /*if (isModelReady && isTfReady) {
     classifyImage()
-  }
+  }*/
 
   return (
     <SideMenu
@@ -126,10 +126,7 @@ export const DiaryScreen = ({ navigation }) => {
       isOpen={isOpenSideMenu}
       onChange={isOpenSideMenu => setIsOpenSideMenu(isOpenSideMenu)}
     >
-      <ImageBackground
-        style={styles.backgroundImage}
-        source={require('DrawApp/assets/png/bg.png')}
-      >
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => setIsOpenSideMenu(!isOpenSideMenu)}
         style={styles.menuButton}
@@ -160,13 +157,20 @@ export const DiaryScreen = ({ navigation }) => {
 
           ))}
         </ScrollView>
-      </ImageBackground>
+      </View>
       </SideMenu>
   );
 };
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    backgroundColor: '#71D6C0',
+  },
   contentContainer: {
     flex: 1,
   },
