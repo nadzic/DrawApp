@@ -41,7 +41,7 @@ const Menu = () => {
         <View style={styles.content}>
           <View style={styles.lineSeparator} />
           <View style={styles.itemContainer}>
-            <Image style={styles.itemImage}  source={require('DrawApp/assets/png/home.png')} />
+            <Image style={styles.itemImage}  source={require('DrawApp/assets/png/draw.png')} />
             <Text
               style={styles.itemText}
               onPress={() => RootNavigation.navigate('Draw', {})}
@@ -51,7 +51,7 @@ const Menu = () => {
           </View>
           <View style={styles.lineSeparator} />
           <View style={styles.itemContainer}>
-            <Image style={styles.itemImage}  source={require('DrawApp/assets/png/ranking.png')} />
+            <Image style={styles.itemImage}  source={require('DrawApp/assets/png/feeling2.png')} />
             <Text
               style={styles.itemText}
               onPress={() => RootNavigation.navigate('Diary', {})}
@@ -61,7 +61,7 @@ const Menu = () => {
           </View>
           <View style={styles.lineSeparator} />
           <View style={styles.itemContainer}>
-            <Image style={styles.itemImage} source={require('DrawApp/assets/png/logout.png')} />
+            <Image style={styles.itemImage} source={require('DrawApp/assets/png/logout10.png')} />
             <Text
               onPress={logout}
               style={styles.itemText}
