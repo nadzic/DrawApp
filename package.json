@@ -25,7 +25,7 @@
     "expo-camera": "^8.3.1",
     "expo-gl": "^8.3.1",
     "expo-gl-cpp": "^8.3.1",
-    "jpeg-js": "^0.4.1",
+    "jpeg-js": "^0.4.4",
     "react": "16.13.1",
     "react-native": "0.63.1",
     "react-native-email": "^1.1.0",
